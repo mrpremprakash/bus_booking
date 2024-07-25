@@ -1,0 +1,29 @@
+{
+    "name": "bus-booking-app",
+    "version": "1.0.0",
+    "description": "A bus booking application with fare calculation using Node.js, Express, and Sequelize.",
+    "main": "index.js",
+    "scripts": {
+      "start": "node index.js",
+      "dev": "nodemon index.js",
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+      "nodejs",
+      "express",
+      "sequelize",
+      "mysql",
+      "bus-booking"
+    ],
+    "author": "Your Name",
+    "license": "ISC",
+    "dependencies": {
+      "express": "^4.18.2",
+      "mysql2": "^2.3.3",
+      "sequelize": "^6.29.3"
+    },
+    "devDependencies": {
+      "nodemon": "^2.0.22"
+    }
+  }
+  
