@@ -1,7 +1,7 @@
 const { Sequelize, DataTypes } = require('sequelize');
 
-const sequelize = new Sequelize('bus_booking', 'root', '', {
-  host: 'localhost',
+const sequelize = new Sequelize('sql12722637', 'sql12722637', 'cph272PyfG', {
+  host: 'sql12.freesqldatabase.com',
   dialect: 'mysql',
   define: {
     freezeTableName: true,
