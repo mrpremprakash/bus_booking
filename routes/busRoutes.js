@@ -1,38 +1,30 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const db = require('../models');
+const db = require("../models");
 
-// Example route to get all bus routes
-router.get('/busRoutes', async (req, res) => {
+router.get("/buses", async (req, res) => {
   try {
-    const busRoutes = await db.BusRoute.findAll();
-    res.json(busRoutes);
+    const buses = await db.BusesRoute.findAll();
+    res.json(buses);
   } catch (error) {
     res.status(500).send(error.message);
   }
 });
+router.post("/update-bus-location", async (req, res) => {
+  const { busId, latitude, longitude } = req.body;
 
-// Route to get stops by route ID
-router.get('/routes/:routeId/stops', async (req, res) => {
-  const { routeId } = req.params;
   try {
-    const route = await db.BusRoute.findByPk(routeId, {
-      include: {
-        model: db.Stop,
-        through: {
-          attributes: ['StopOrder', 'DistanceFromPrevious']
-        }
-      }
-    });
-    
-    if (!route) {
-      return res.status(404).json({ message: 'Route not found' });
-    }
-    
-    res.json(route.Stops);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
+    const response = await db.BusesRoute.update(
+      { Latitude: latitude, Longitude: longitude },
+      { where: { BusID: busId } }
+    );
+    console.log(response);
 
+    res.json({
+      busId,
+      latitude,
+      longitude,
+    });
+  } catch (error) {}
+});
 module.exports = router;

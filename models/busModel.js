@@ -1,14 +1,15 @@
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define(
-    "BusRoute",
+    "Bus",
     {
-      RouteID: {
+      BusID: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
       },
-      RouteName: DataTypes.STRING,
-      TotalDistance: DataTypes.INTEGER,
+      BusRegNo: DataTypes.STRING,
+      Latitude: DataTypes.INTEGER,
+      Longitude: DataTypes.INTEGER,
     },
     {
       timestamps: false,

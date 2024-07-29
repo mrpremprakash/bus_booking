@@ -7,7 +7,7 @@ router.post("/calculate-fare", async (req, res) => {
   const { routeId, fromStopId, toStopId } = req.body;
 
   try {
-    const route = await db.BusRoute.findByPk(routeId, {
+    const route = await db.Route.findByPk(routeId, {
       include: {
         model: db.Stop,
         through: {
