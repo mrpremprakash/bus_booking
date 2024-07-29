@@ -4,7 +4,7 @@
   "description": "A bus booking application with fare calculation using Node.js, Express, and Sequelize.",
   "main": "index.js",
   "engines": {
-    "node": "14.x"
+    "node": "20.x"
   },
   "scripts": {
       "start": "node index.js",
