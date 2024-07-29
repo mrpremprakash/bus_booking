@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 25, 2024 at 06:07 AM
+-- Generation Time: Jul 29, 2024 at 05:34 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -24,6 +24,27 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `Bus`
+--
+
+CREATE TABLE `Bus` (
+  `BusID` int(11) NOT NULL,
+  `BusRegNo` varchar(12) NOT NULL,
+  `Latitude` float NOT NULL,
+  `Longitude` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `Bus`
+--
+
+INSERT INTO `Bus` (`BusID`, `BusRegNo`, `Latitude`, `Longitude`) VALUES
+(1, 'JH02-AC 5908', 23.45, 40.45),
+(2, 'JH02-AC 5909', 23.45, 40.45);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `BusRoute`
 --
 
@@ -32,15 +53,6 @@ CREATE TABLE `BusRoute` (
   `RouteName` varchar(255) DEFAULT NULL,
   `TotalDistance` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `BusRoute`
---
-
-INSERT INTO `BusRoute` (`RouteID`, `RouteName`, `TotalDistance`) VALUES
-(1, 'Route A', 100),
-(2, 'Route B', 150),
-(3, 'Route C', 80);
 
 -- --------------------------------------------------------
 
@@ -64,6 +76,27 @@ INSERT INTO `Fare` (`id`, `RouteID`, `BaseFare`, `FarePerKM`, `ServiceType`) VAL
 (0, 1, 10, 1, 'Ordinary'),
 (0, 2, 15, 1.5, 'Express'),
 (0, 3, 20, 2, 'Deluxe');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Route`
+--
+
+CREATE TABLE `Route` (
+  `RouteID` int(11) NOT NULL,
+  `RouteName` varchar(255) DEFAULT NULL,
+  `TotalDistance` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `Route`
+--
+
+INSERT INTO `Route` (`RouteID`, `RouteName`, `TotalDistance`) VALUES
+(1, 'Route A', 100),
+(2, 'Route B', 150),
+(3, 'Route C', 80);
 
 -- --------------------------------------------------------
 
@@ -122,6 +155,12 @@ INSERT INTO `Stop` (`StopID`, `StopName`, `Latitude`, `Longitude`) VALUES
 --
 
 --
+-- Indexes for table `Bus`
+--
+ALTER TABLE `Bus`
+  ADD PRIMARY KEY (`BusID`);
+
+--
 -- Indexes for table `BusRoute`
 --
 ALTER TABLE `BusRoute`
@@ -131,6 +170,12 @@ ALTER TABLE `BusRoute`
 -- Indexes for table `Fare`
 --
 ALTER TABLE `Fare`
+  ADD PRIMARY KEY (`RouteID`);
+
+--
+-- Indexes for table `Route`
+--
+ALTER TABLE `Route`
   ADD PRIMARY KEY (`RouteID`);
 
 --
@@ -151,9 +196,21 @@ ALTER TABLE `Stop`
 --
 
 --
+-- AUTO_INCREMENT for table `Bus`
+--
+ALTER TABLE `Bus`
+  MODIFY `BusID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `BusRoute`
 --
 ALTER TABLE `BusRoute`
+  MODIFY `RouteID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `Route`
+--
+ALTER TABLE `Route`
   MODIFY `RouteID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
@@ -170,13 +227,13 @@ ALTER TABLE `Stop`
 -- Constraints for table `Fare`
 --
 ALTER TABLE `Fare`
-  ADD CONSTRAINT `fare_ibfk_1` FOREIGN KEY (`RouteID`) REFERENCES `BusRoute` (`RouteID`);
+  ADD CONSTRAINT `fare_ibfk_1` FOREIGN KEY (`RouteID`) REFERENCES `route` (`RouteID`);
 
 --
 -- Constraints for table `RouteStop`
 --
 ALTER TABLE `RouteStop`
-  ADD CONSTRAINT `routestop_ibfk_1` FOREIGN KEY (`RouteID`) REFERENCES `BusRoute` (`RouteID`),
+  ADD CONSTRAINT `routestop_ibfk_1` FOREIGN KEY (`RouteID`) REFERENCES `route` (`RouteID`),
   ADD CONSTRAINT `routestop_ibfk_2` FOREIGN KEY (`StopID`) REFERENCES `Stop` (`StopID`);
 COMMIT;
 
