@@ -7,26 +7,27 @@
     "node": "20.x"
   },
   "scripts": {
-      "start": "node index.js",
-      "dev": "nodemon index.js",
-      "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-      "nodejs",
-      "express",
-      "sequelize",
-      "mysql",
-      "bus-booking"
+    "nodejs",
+    "express",
+    "sequelize",
+    "mysql",
+    "bus-booking"
   ],
   "author": "Your Name",
   "license": "ISC",
   "dependencies": {
-      "body-parser": "^1.20.2",
-      "express": "^4.18.2",
-      "mysql2": "^2.3.3",
-      "sequelize": "^6.29.3"
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.29.3",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
-      "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22"
   }
 }

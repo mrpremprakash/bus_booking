@@ -6,6 +6,7 @@ const db = require('./models');
 const busRoutes = require('./routes/busRoutes');
 const fareRoutes = require('./routes/fareRoutes');
 const Route = require('./routes/routes')
+const excelUtil = require('./excel-utils/readBusTimeTableWithRoute');
 
 // Middleware
 // app.use(express.json());
@@ -18,6 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/api', busRoutes);
 app.use('/api', fareRoutes);
 app.use('/api', Route);
+app.use('/read-excel', excelUtil);
 
 // Sync database and start server
 db.sequelize.sync().then(() => {
