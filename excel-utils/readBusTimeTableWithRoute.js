@@ -73,10 +73,10 @@ function readExcel() {
 
   // Read the Excel file
   const workbook = xlsx.readFile(filePath);
-
+  // return workbook;
   // Get the first sheet name
-  const sheetName = workbook.SheetNames[0];
-
+  const sheetName = workbook.SheetNames[1];
+  console.log(`--- ${sheetName} ---`);
   // Get the worksheet
   const worksheet = workbook.Sheets[sheetName];
 
@@ -89,52 +89,7 @@ function readExcel() {
 router.get("/preparedata", async (req, res) => {
   finalData = [];
   nextIndex = 0;
-  const data = [
-    {
-      SCHEDULE: 4,
-      "ROUTE NO": "2A UP",
-      ROUTE: "KATRAJ TO SHIVAJINAGAR",
-      __EMPTY: "6.00AM",
-      __EMPTY_1: "6.30AM",
-      __EMPTY_2: "7.00AM",
-      __EMPTY_3: "7.25AM",
-      __EMPTY_4: "7.50AM",
-      __EMPTY_5: "8.20AM",
-    },
-    {
-      __EMPTY: "8.50AM",
-      __EMPTY_1: "9.15AM",
-      __EMPTY_2: "9.40AM",
-      __EMPTY_3: "10.10AM",
-      __EMPTY_4: "10.40AM",
-      __EMPTY_5: "11.05AM",
-    },
-    {
-      __EMPTY: "12.00PM",
-      __EMPTY_1: "12.30PM",
-      __EMPTY_2: "1.00PM",
-      __EMPTY_3: "1.25PM",
-      __EMPTY_4: "2.00PM",
-      __EMPTY_5: "2.30PM",
-    },
-    {
-      __EMPTY: "2.55PM",
-      __EMPTY_1: "3.20PM",
-      __EMPTY_2: "3.50PM",
-      __EMPTY_3: "4.20PM",
-      __EMPTY_4: "4.45PM",
-      __EMPTY_5: "5.10PM",
-    },
-    {
-      __EMPTY: "5.40PM",
-      __EMPTY_1: "6.10PM",
-      __EMPTY_2: "6.35PM",
-      __EMPTY_3: "7.00PM",
-      __EMPTY_4: "8.00PM",
-      __EMPTY_5: "8.30PM",
-    },
-    { __EMPTY: "8.55PM", __EMPTY_1: "9.25PM" },
-  ];
+  // const result = readExcel();
   const result = prepareJsonData(readExcel());
   // console.log(result);
   res.send({ message: "Done", result });
